@@ -6,7 +6,6 @@
       <thead>
         <tr>
           <th scope="col">Title</th>
-          <th scope="col">Body</th>
           <th scope="col">Handle</th>
         </tr>
       </thead>
@@ -15,15 +14,14 @@
       @foreach ($posts as $post)
           <tr>
               <td> {{ $post->title}} </td>
-              <td> {{ $post->body }} </td>
-              <td>#</td>
+              <td>
+                <a href="/posts/{{ $post->id }}"  class="btn btn-link"> Detail </a>
+              </td>
           </tr>
       @endforeach
         
       </tbody>
   
     </table>
-  
-  
-
+  </div>
 @stop

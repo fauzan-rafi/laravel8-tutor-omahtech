@@ -16,12 +16,9 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/posts/create">Insert</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
         </ul>
 
         <form class="d-flex">
