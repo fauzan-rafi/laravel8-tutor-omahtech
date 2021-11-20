@@ -11,8 +11,12 @@
                     <p class="card-text">
                         {{ $post->body }}
                     </p>
-                    <a href="#" class="card-link">Update</a>
-                    <a href="#" class="card-link text-denger">Delete</a>
+                    <a href="/posts/edit/{{ $post->id }}" class="card-link">Update</a>
+                    <form action="/posts/delete/{{ $post->id }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger" >Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

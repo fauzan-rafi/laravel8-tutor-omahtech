@@ -66,7 +66,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit',['post' => $post]);
     }
 
     /**
@@ -78,7 +78,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+
+        $attr = $request->all();
+        $post->update($attr);
+
+        return redirect()->to('/');
     }
 
     /**
@@ -89,6 +93,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        
+        return redirect()->to('/');
     }
 }
