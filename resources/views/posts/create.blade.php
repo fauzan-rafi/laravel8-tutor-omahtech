@@ -2,17 +2,9 @@
 
 @section('content')
 
-    <form method="POST" action="/posts/store">
+    <form method="POST" action="/posts/store" enctype="multipart/form-data">
         @csrf
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="title" >
-        </div>
-        <div class="mb-3">
-            <label for="body" class="form-label"> Body </label>
-            <textarea name="body" id="body" class="form-control" cols="30" rows="10"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit" > Submit </button>
+        @include('posts.partial.form');
     </form>
     
 @endsection

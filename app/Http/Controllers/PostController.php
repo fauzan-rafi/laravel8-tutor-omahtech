@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post]);
     }
 
     /**
@@ -37,11 +37,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        
-        Post::create([
-            'title' => request('title'),
-            'body' => request('body')
-        ]);
+        $attr = $request->all();
+
+        if (request()->file('thumbnail')) {
+            $imageUrl = request()->file('thumbnail')->store('image/post');
+        }else{
+            $imageUrl = null;
+        }
+        $attr['thumbnail'] = $imageUrl;
+
+        Post::create($attr);
 
         return redirect()->to('/');
     }
@@ -80,6 +85,15 @@ class PostController extends Controller
     {
 
         $attr = $request->all();
+
+        if (request()->file('thumbnail')) {
+            $imageUrl = request()->file('thumbnail')->store('image/post');
+        }else{
+            $imageUrl = $post->thumbnail;
+        }
+
+        $attr['thumbnail'] = $imageUrl;
+
         $post->update($attr);
 
         return redirect()->to('/');
@@ -94,7 +108,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        
+
+        \Storage::delete($post->thumbnail);
+
         return redirect()->to('/');
     }
 }
